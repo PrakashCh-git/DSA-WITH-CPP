@@ -39,7 +39,7 @@ void quickSort(int arr[],int si, int ei){
 
 }
 int main(){
-    int arr[] = {5,8,4,2,3,1,7,6};
+    int arr[] = {12,1,6,7,13,5,2,4,9,12,43,18,17,16};
     int n = sizeof(arr)/sizeof(arr[0]);
     int si = 0;
     int ei = n-1;
