@@ -36,9 +36,9 @@ public:
             }
 
             if(businessLine[i]=="electronics" and flag) mp[0].push_back(cd);
-            if(businessLine[i]=="grocery" and flag) mp[1].push_back(cd);
-            if(businessLine[i]=="pharmacy" and flag) mp[2].push_back(cd);
-            if(businessLine[i]=="restaurant" and flag) mp[3].push_back(cd);
+            else if(businessLine[i]=="grocery" and flag) mp[1].push_back(cd);
+            else if(businessLine[i]=="pharmacy" and flag) mp[2].push_back(cd);
+            else if(businessLine[i]=="restaurant" and flag) mp[3].push_back(cd);
     
         }
 
