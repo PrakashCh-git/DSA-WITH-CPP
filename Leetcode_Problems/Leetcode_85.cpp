@@ -2,6 +2,7 @@
 #include<vector>
 #include<climits>
 #include<stack>
+#include<algorithm>
 using namespace std;
 
 class Solution {
