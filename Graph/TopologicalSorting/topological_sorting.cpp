@@ -45,3 +45,5 @@ class Solution {
         return ans;
     }
 };
+
+//Topological sorting is a way arranging the vertices in linear of a directed acyclic graph such that for every directed edge u->v u comes before v in that linear order.

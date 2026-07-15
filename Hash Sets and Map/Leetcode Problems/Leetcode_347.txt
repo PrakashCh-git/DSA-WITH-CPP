@@ -1,0 +1,27 @@
+Approach 1 : Hashmap + MinHeap
+             TimeComplexity : O(n log(k))
+             SpaceComplexity : O(n)
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> mp;
+        priority_queue<pair<int,int> , vector<pair<int,int>>, greater<pair<int,int>>> minHeap;
+        vector<int> ans;
+
+        for(int i = 0; i<nums.size(); i++) {
+            mp[nums[i]]++;
+        }
+
+        for(auto &P : mp) { 
+            minHeap.push({P.second,P.first});
+            if(minHeap.size()>k) minHeap.pop();
+        }
+
+        while(!minHeap.empty()) {
+            ans.push_back(minHeap.top().second);
+            minHeap.pop();
+        }
+        return ans;
+    }
+};
