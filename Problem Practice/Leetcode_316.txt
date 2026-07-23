@@ -1,0 +1,72 @@
+
+Demand : The problem ask us to find lexicographically the smallest subsequence that we get after removing   the dublicate characters. Thus no character in the resultant string should be appearing repeating itself.
+
+
+Approach : 
+            1.We track the frequency of the characters using haspmap. It shows the frequency of the character present in the unprocessed string.
+
+            2. We then make a visited array to check if the character is already visited. If the character is already visited we skip the turn fully.
+
+            3. We use a stack for the require operation of pushing and poping as it would be required in order to find the string which is lexicographically smallest.
+
+
+            Case : While processing the string  
+                   1. The stack(resultant string) is empty we push the character marking it visit true and pushing show the character is in the resultant string already same character won't be accepted.
+
+                   2. The stack is not empty :
+                        a. top value is less : push without thinking and mark the character as visited
+                        b. top value is greater : 
+                            -> pop till the stack is empty and frequency of the chracter in the top is greater than 0 and the top value is still greater than the current value.
+                        c. the equal value would have been already taken cared by the check before processing the string
+
+Solution
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        unordered_map<char,int> mp;
+        vector<bool> visited(26,false);
+        stack<char> st;
+
+        for(int i = 0; i<s.size(); i++) {
+            mp[s[i]]++;
+        }
+
+
+        for(int i = 0; i<s.size(); i++) {
+
+            mp[s[i]]--;
+            if(visited[s[i]-'a']) continue;
+
+            if(st.empty()) {
+                st.push(s[i]);
+                visited[s[i]-'a'] = true;
+            }
+
+            else if(st.top() <= s[i]) {
+                st.push(s[i]);
+                visited[s[i]-'a'] = true;
+            }
+            
+            else if(st.top() > s[i] and !visited[s[i]-'a']) {
+                while(!st.empty() and st.top() > s[i] and mp[st.top()]>0) {
+                    visited[st.top()-'a'] = false;
+                    st.pop();
+                }
+                st.push(s[i]);
+                visited[s[i]-'a'] = true;
+            }
+
+        }
+
+        string ans = "";
+        while(!st.empty()) {
+            ans += st.top();
+            st.pop();
+        }
+
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
+ 
